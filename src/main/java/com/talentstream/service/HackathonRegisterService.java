@@ -67,6 +67,8 @@ public class HackathonRegisterService {
 	        r.setRegistaratinStatus(true);
 	        r.setSubmitStatus(false);
 	        r.setRegisteredAt(LocalDateTime.now().plus(Duration.ofMinutes(330)));
+	        hackathon.setRegistrationCount(hackathon.getRegistrationCount() + 1);
+	        hackRepo.save(hackathon);
 	        return repo.save(r);
 	    }
 

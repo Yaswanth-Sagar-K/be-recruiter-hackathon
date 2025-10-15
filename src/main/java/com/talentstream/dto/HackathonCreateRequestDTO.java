@@ -22,7 +22,7 @@ public class HackathonCreateRequestDTO {
 	private String description;
 	
 	@NotNull
-	@Size(min = 5, max = 100, message = "company name must be between 5 and 100 characters")
+	@Size(min = 2, max = 100, message = "company name must be between 2 and 100 characters")
 	private String company;
 	
 

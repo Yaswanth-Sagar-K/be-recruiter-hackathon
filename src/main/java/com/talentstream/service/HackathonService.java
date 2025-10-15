@@ -92,13 +92,12 @@ public class HackathonService {
 	    }
 	 
 	 public List<Hackathon> getCompletedHackathons() {
-	        List<Hackathon> allHackathons = repo.findAll();
-
-	        return allHackathons.stream()
-	                .filter(h -> h.getStatus() == HackathonStatus.COMPLETED)
-	                .sorted(Comparator.comparing(Hackathon::getCreatedAt).reversed()) 
-	                .collect(Collectors.toList());
-	    }
+        List<Hackathon> allHackathons = repo.findAll();
+        return allHackathons.stream()
+                .filter(h -> h.getStatus() == HackathonStatus.COMPLETED)
+                .sorted(Comparator.comparing(Hackathon::getCreatedAt).reversed())
+                .collect(Collectors.toList());
+    }
 	 
 	 
 	public Hackathon createHackathon(HackathonCreateRequestDTO r) {
@@ -132,17 +131,17 @@ public class HackathonService {
     }
 
 	public List<Hackathon> getAllByCreaterId(Long id) {
-		return repo.findByRecruiterId(id).get();
+		return repo.findByRecruiterIdOrderByCreatedAtDesc(id);
 	}
 	
 	public List<Hackathon> getAll(){
-		List<Hackathon> allHackathons = repo.findAll();
+        List<Hackathon> allHackathons = repo.findAll();
 
         return allHackathons.stream()
                 .filter(h -> h.getStatus() == HackathonStatus.ACTIVE || h.getStatus() == HackathonStatus.UPCOMING)
-                .sorted(Comparator.comparing(Hackathon::getCreatedAt).reversed()) 
+                .sorted(Comparator.comparing(Hackathon::getCreatedAt).reversed())
                 .collect(Collectors.toList());
-	}
+    }
 
 	public Optional<Hackathon> get(Long hackId, Long userId) {
 	    boolean applicantExists = appRepo.existsById(userId);

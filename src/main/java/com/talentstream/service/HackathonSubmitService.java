@@ -1,6 +1,7 @@
 package com.talentstream.service;
 
 import com.talentstream.dto.HackathonSubmitRequestDTO;
+import com.talentstream.entity.Hackathon;
 import com.talentstream.entity.HackathonRegister;
 import com.talentstream.entity.HackathonSubmit;
 import com.talentstream.repository.ApplicantRepository;
@@ -73,7 +74,11 @@ public class HackathonSubmitService {
 	    HackathonRegister r = regRepo.findById(req.getRegistrationId()).get();
 	    r.setSubmitStatus(true);
 	    regRepo.save(r);
-
+	    
+	    Hackathon h = hackRepo.findById(hackathonId).get();
+	    h.setSubmissionCount(h.getSubmissionCount() + 1);
+	    hackRepo.save(h);
+	    
 	    return repo.save(s);
 	}
 

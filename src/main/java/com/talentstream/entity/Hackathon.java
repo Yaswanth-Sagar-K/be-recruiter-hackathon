@@ -27,6 +27,9 @@ public class Hackathon {
 	
 	private String company;
 	private Long winner;
+
+	private Long registrationCount;
+	private Long submissionCount;
 	
 	@Column(length = 2000)
 	private String instructions;
@@ -51,6 +54,9 @@ public class Hackathon {
                 this.status = HackathonStatus.COMPLETED;
             }
         }
+
+		if (this.registrationCount == null) this.registrationCount = 0L;
+		if (this.submissionCount == null) this.submissionCount = 0L;
     }
 	
 	public LocalDateTime getCreatedAt() {
@@ -160,5 +166,21 @@ public class Hackathon {
 	}
 	public void setWinner(Long winner) {
 		this.winner = winner;
+	}
+
+	public Long getRegistrationCount() {
+		return registrationCount;
+	}
+
+	public void setRegistrationCount(Long registrationCount) {
+		this.registrationCount = registrationCount;
+	}
+
+	public Long getSubmissionCount() {
+		return submissionCount;
+	}
+
+	public void setSubmissionCount(Long submissionCount) {
+		this.submissionCount = submissionCount;
 	}
 }
